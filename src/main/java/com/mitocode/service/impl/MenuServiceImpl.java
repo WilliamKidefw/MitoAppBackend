@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.mitocode.model.Menu;
@@ -56,7 +58,12 @@ public class MenuServiceImpl implements IMenuService{
 			
 			menus.add(m);
 		});
-		return menus;
+		return menus;			
+	}
+
+	@Override
+	public Page<Menu> listarPageable(Pageable pageable) {
+		return repo.findAll(pageable);
 	}
 
 }
