@@ -31,6 +31,7 @@ public class MenuRolServiceImpl implements IMenuRolService {
 		return dto;
 	}
 
+	@Transactional
 	@Override
 	public void eliminarTransaccional(MenuListaRolDTO dto) {
 		

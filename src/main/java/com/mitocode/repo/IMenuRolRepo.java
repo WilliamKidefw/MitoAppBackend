@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.mitocode.model.MenuRol;
 
@@ -16,10 +15,10 @@ public interface IMenuRolRepo extends JpaRepository<MenuRol, Integer>{
 	@Query(value = "INSERT INTO menu_rol(id_menu, id_rol) VALUES (:idMenu, :idRol)", nativeQuery = true)
 	Integer registrar(@Param("idMenu") Integer idMenu, @Param("idRol") Integer idRol);
 	
-	@Transactional
+	//@Transactional
 	@Modifying
 	@Query(value = "DELETE FROM menu_rol WHERE id_menu = :idMenu AND id_rol = :idRol", nativeQuery = true)
-	void eliminar(@Param("idMenu") Integer idConsulta, @Param("idRol") Integer idExamen);
+	void eliminar(@Param("idMenu") Integer idMenu, @Param("idRol") Integer idRol);
 	
 	@Query("from MenuRol mr where mr.menu.idMenu = :idMenu")
 	List<MenuRol> listarRolesPorMenu(@Param("idMenu") Integer idMenu);
